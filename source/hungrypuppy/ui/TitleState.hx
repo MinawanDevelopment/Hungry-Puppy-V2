@@ -1,5 +1,6 @@
 package hungrypuppy.ui;
 
+import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
@@ -14,6 +15,7 @@ class TitleState extends CerberState
 	override public function create()
 	{
 		pressEnterText = new Text();
+		pressEnterText.color = FlxColor.WHITE;
 		pressEnterText.y = FlxG.height - 50;
 		pressEnterText.size = 50;
 		pressEnterText.text = "Press ENTER to begin!";
@@ -35,5 +37,16 @@ class TitleState extends CerberState
 		});
 
 		super.create();
+	}
+
+	override public function update(elapsed) {
+
+		if (FlxG.keys.justReleased.ENTER) {
+			FlxG.camera.flash(FlxColor.WHITE, 0.6, () -> {				
+				FlxG.switchState(new hungrypuppy.ui.MainMenuState());
+			});
+		}
+
+		super.update(elapsed);
 	}
 }
