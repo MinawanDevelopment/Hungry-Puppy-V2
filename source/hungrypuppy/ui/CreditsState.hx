@@ -1,9 +1,9 @@
 package hungrypuppy.ui;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import hungrypuppy.ui.uistuff.MenuBackground;
-import flixel.FlxG;
 import hungrypuppy.ui.uistuff.MenuOption;
 
 class CreditsState extends CerberState {
@@ -43,6 +43,11 @@ class CreditsState extends CerberState {
         if (FlxG.keys.justPressed.DOWN) {
             updateSelection(1);
         }
+
+		if (FlxG.keys.justPressed.ESCAPE)
+		{
+			FlxG.switchState(new MainMenuState());
+		}
 
         super.update(elapsed);
     }

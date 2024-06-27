@@ -1,7 +1,8 @@
 package hungrypuppy.ui;
 
-import flixel.util.FlxColor;
 import flixel.FlxG;
+import flixel.util.FlxColor;
+import hungrypuppy.gameplay.HungryPuppy;
 import hungrypuppy.ui.uistuff.MenuOption;
 
 class MainMenuState extends CerberState {
@@ -36,6 +37,11 @@ class MainMenuState extends CerberState {
             updateSelection(-1);
         } 
 
+		if (FlxG.keys.justPressed.NINE)
+		{
+			FlxG.openURL("https://www.youtube.com/watch?v=4jz5WU_Hh00");
+		}
+
         if (FlxG.keys.justPressed.ENTER) {
             submitSelection();
         }
@@ -57,6 +63,8 @@ class MainMenuState extends CerberState {
         }
 
         switch(daChoice) {
+			case "Play":
+				FlxG.switchState(new HungryPuppy());
             case "Credits":
                 trace("Credits State?");
                 FlxG.switchState(new CreditsState());
