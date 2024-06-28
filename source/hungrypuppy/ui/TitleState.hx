@@ -1,9 +1,10 @@
 package hungrypuppy.ui;
 
-import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import hungrypuppy.backend.BeatHandler;
 import hungrypuppy.ui.uistuff.Text;
 import hungrypuppy.utilities.CoolUtil;
 
@@ -14,6 +15,8 @@ class TitleState extends CerberState
 
 	override public function create()
 	{
+		BeatHandler.playMusic("assets/music/cerberTheme.ogg", true);
+
 		pressEnterText = new Text();
 		pressEnterText.color = FlxColor.WHITE;
 		pressEnterText.y = FlxG.height - 50;
@@ -27,6 +30,7 @@ class TitleState extends CerberState
 		staticLogo.screenCenter();
 		add(staticLogo);
 
+		/*
 		CoolUtil.loopDelayed(1, () ->
 		{
 			staticLogo.scale.set(1.2, 1.2);
@@ -35,14 +39,27 @@ class TitleState extends CerberState
 				staticLogo.scale.set(1, 1);
 			});
 		});
+		 */
 
 		super.create();
+	}
+
+	override public function beatHit(curBeat)
+	{
+		staticLogo.scale.set(1.2, 1.2);
+		new FlxTimer().start(0.25, (timer:FlxTimer) ->
+		{
+			staticLogo.scale.set(1, 1);
+		});
+		super.beatHit(curBeat);
 	}
 
 	override public function update(elapsed) {
 
 		if (FlxG.keys.justReleased.ENTER) {
-			FlxG.camera.flash(FlxColor.WHITE, 0.6, () -> {				
+			BeatHandler.stopMusic();
+			FlxG.camera.flash(FlxColor.WHITE, 0.6, () ->
+			{		
 				FlxG.switchState(new hungrypuppy.ui.MainMenuState());
 			});
 		}
