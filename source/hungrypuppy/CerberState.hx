@@ -1,21 +1,20 @@
 package hungrypuppy;
 
 import flixel.addons.ui.FlxUIState;
-import hungrypuppy.backend.BeatHandler;
+import hungrypuppy.backend.Music;
 import hungrypuppy.utilities.MemoryManager;
 
 class CerberState extends FlxUIState
 {
 	override public function create()
 	{
-		BeatHandler.beatLoop(beatHit);
+		hungrypuppy.backend.BeatHandler.registerCallback(beatHit); // Replaced some shitty wonky beatLoop func
 
 		super.create();
 	}
 
 	public function beatHit(curBeat:Int)
 	{
-		trace("(Cur Beat Hit: " + curBeat + ") ");
 		// Beat hit logic!
 	}
 

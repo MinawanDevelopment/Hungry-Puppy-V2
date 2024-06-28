@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import hungrypuppy.backend.BeatHandler;
+import hungrypuppy.backend.Music;
 import hungrypuppy.ui.uistuff.Text;
 import hungrypuppy.utilities.CoolUtil;
 
@@ -16,6 +16,8 @@ class TitleState extends CerberState
 	override public function create()
 	{
 		BeatHandler.playMusic("assets/music/cerberTheme.ogg", true, 140);
+		FlxG.sound.music.volume = 0;
+		MusicUtil.fadeIn(1);		
 
 		pressEnterText = new Text();
 		pressEnterText.color = FlxColor.WHITE;
@@ -57,7 +59,7 @@ class TitleState extends CerberState
 	override public function update(elapsed) {
 
 		if (FlxG.keys.justReleased.ENTER) {
-			BeatHandler.stopMusic();
+			hungrypuppy.backend.BeatHandler.stopMusic();
 			FlxG.camera.flash(FlxColor.WHITE, 0.6, () ->
 			{		
 				FlxG.switchState(new hungrypuppy.ui.MainMenuState());
