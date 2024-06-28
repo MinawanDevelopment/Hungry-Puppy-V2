@@ -15,7 +15,7 @@ class TitleState extends CerberState
 
 	override public function create()
 	{
-		BeatHandler.playMusic("assets/music/cerberTheme.ogg", true);
+		BeatHandler.playMusic("assets/music/cerberTheme.ogg", true, 140);
 
 		pressEnterText = new Text();
 		pressEnterText.color = FlxColor.WHITE;
